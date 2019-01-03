@@ -104,8 +104,15 @@ app.get('/pagecount', function (req, res) {
   
   con.connect(function(err) {
     if (err) console.log(err);
-    res.status(200).send('Succesfully connected to database!' + (err || ''));
+    //res.status(200).send('Succesfully connected to database!' + (err || ''));
   });
+
+  con.query("SELECT name FROM cats WHERE owner = 'Casey'", function (error, results, fields) {
+    if (error) console.log(error);
+    res.status(200).send('The solution is: ' + results[0] + (error || ''));
+  });
+
+  connection.end();
 });
 
 app.get('/database', function (req, res) {
@@ -117,8 +124,14 @@ app.get('/database', function (req, res) {
   
   con.connect(function(err) {
     if (err) console.log(err);
-    res.status(200).send('Succesfully connected to database!' + (err || ''));
   });
+
+  con.query("SELECT name FROM cats WHERE owner = 'Casey'", function (error, results, fields) {
+    if (error) console.log(err);
+    res.status(200).send('The solution is: ' + results[0].solution + (err || ''));
+  });
+
+  connection.end();
 });
 
 // error handling
