@@ -113,7 +113,7 @@ app.get('/pagecount', function (req, res) {
     res.status(200).send('The solution is: ' + results[0] + (error || ''));
   });
 
-  connection.end();
+  con.end();
 });
 
 app.get('/database', function (req, res) {
