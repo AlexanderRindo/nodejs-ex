@@ -96,15 +96,16 @@ app.get('/', function (req, res) {
 });
 
 app.get('/pagecount', function (req, res) {
-  var con = mysql.createConnection({
+  const con = mysql.createConnection({
     host: '127.0.0.1',
     port: '3306',
-    user: "admin",
-    password: "100%Widgets"
+    user: 'admin',
+    password: '100%Widgets',
+    database: 'quickshot'
   });
   
   con.connect(function(err) {
-    if (err) throw err;
+    if (err) console.log(err);
     res.status(200).send('Succesfully connected to database!');
   });
 });
