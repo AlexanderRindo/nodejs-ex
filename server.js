@@ -97,6 +97,7 @@ app.get('/', function (req, res) {
 
 app.get('/pagecount', function (req, res) {
   const con = mysql.createConnection({
+    host: 'mysql://localhost:3306/',
     user: 'admin',
     password: '100%Widgets',
     database: 'quickshot'
@@ -104,7 +105,20 @@ app.get('/pagecount', function (req, res) {
   
   con.connect(function(err) {
     if (err) console.log(err);
-    res.status(200).send('Succesfully connected to database!');
+    res.status(200).send('Succesfully connected to database!' + (err || ''));
+  });
+});
+
+app.get('/database', function (req, res) {
+  var connection = mysql.createConnection({
+    host: 'mysql://' + process.env.MYSQL_DB_HOST + ':' + process.env.MYSQL_DB_PORT + '/',
+    user: process.env.MYSQL_DB_USERNAME,
+    password: process.env.MYSQL_DB_PASSWORD,
+});
+  
+  con.connect(function(err) {
+    if (err) console.log(err);
+    res.status(200).send('Succesfully connected to database!' + (err || ''));
   });
 });
 
