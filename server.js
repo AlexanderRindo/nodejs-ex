@@ -1,7 +1,8 @@
 //  OpenShift sample Node application
-var express = require('express'),
-    app     = express(),
-    morgan  = require('morgan');
+const express = require('express')
+const app = express()
+const morgan = require('morgan');
+const mysql = require('mysql');
     
 Object.assign=require('object-assign')
 
@@ -95,18 +96,17 @@ app.get('/', function (req, res) {
 });
 
 app.get('/pagecount', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    db.collection('counts').count(function(err, count ){
-      res.send('{ pageCount: ' + count + '}');
-    });
-  } else {
-    res.send('{ pageCount: -1 }');
-  }
+  var con = mysql.createConnection({
+    host: '127.0.0.1',
+    port: '3306',
+    user: "admin",
+    password: "100%Widgets"
+  });
+  
+  con.connect(function(err) {
+    if (err) throw err;
+    res.status(200).send('Succesfully connected to database!');
+  });
 });
 
 // error handling
