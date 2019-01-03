@@ -110,7 +110,7 @@ app.get('/pagecount', function (req, res) {
 
   con.query("SELECT name FROM cats WHERE owner = 'Casey'", function (error, results, fields) {
     if (error) console.log(error);
-    res.status(200).send('The solution is: ' + results[0] + (error || ''));
+    res.status(200).send('The solution is: ' + results[0].name + JSON.stringify(results[0]) + (error || ''));
   });
 
   con.end();
@@ -118,7 +118,7 @@ app.get('/pagecount', function (req, res) {
 
 app.get('/database', function (req, res) {
   var connection = mysql.createConnection({
-    host: 'localhost',
+    host: '172.16.252.239',
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
 });
