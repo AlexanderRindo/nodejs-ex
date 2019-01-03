@@ -112,8 +112,8 @@ app.get('/pagecount', function (req, res) {
 app.get('/database', function (req, res) {
   var connection = mysql.createConnection({
     host: 'mysql://' + process.env.MYSQL_DB_HOST + ':' + process.env.MYSQL_DB_PORT + '/',
-    user: process.env.MYSQL_DB_USERNAME,
-    password: process.env.MYSQL_DB_PASSWORD,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
 });
   
   con.connect(function(err) {
