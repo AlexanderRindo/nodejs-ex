@@ -99,7 +99,8 @@ app.get('/pagecount', function (req, res) {
   const con = mysql.createConnection({
     host: '172.16.252.239',
     user: 'admin',
-    password: '100%Widgets'
+    password: '100%Widgets',
+    database: 'quickshot'
   });
   
   con.connect(function(err) {
