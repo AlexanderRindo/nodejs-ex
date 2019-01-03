@@ -97,10 +97,9 @@ app.get('/', function (req, res) {
 
 app.get('/pagecount', function (req, res) {
   const con = mysql.createConnection({
-    host: 'mysql://localhost:3306/',
+    host: '172.16.252.239',
     user: 'admin',
-    password: '100%Widgets',
-    database: 'quickshot'
+    password: '100%Widgets'
   });
   
   con.connect(function(err) {
@@ -111,7 +110,7 @@ app.get('/pagecount', function (req, res) {
 
 app.get('/database', function (req, res) {
   var connection = mysql.createConnection({
-    host: 'mysql://' + process.env.MYSQL_DB_HOST + ':' + process.env.MYSQL_DB_PORT + '/',
+    host: 'localhost',
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
 });
